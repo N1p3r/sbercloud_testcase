@@ -11,3 +11,13 @@ services:
       POSTGRES_DB: app
     ports:
       - 5432:5432
+
+  api:
+    build: .
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app/

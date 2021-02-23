@@ -7,9 +7,9 @@ from fastapi import FastAPI, HTTPException
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from models.validators import Invoice, IdRequestModel, DbInvoiceModel, Payment, \
+from app.models.validators import Invoice, IdRequestModel, DbInvoiceModel, Payment, \
     DbPaymentModel
-from models.db import InvoiceORMModel, PaymentORMModel
+from app.models.db import InvoiceORMModel, PaymentORMModel
 
 app = FastAPI()
 

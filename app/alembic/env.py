@@ -19,9 +19,9 @@ fileConfig(config.config_file_name)
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 import os, sys
-sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '../..')))
 # noinspection PyUnresolvedReferences
-from models.db import BaseOrmModel, PaymentORMModel, InvoiceORMModel
+from app.models.db import BaseOrmModel, PaymentORMModel, InvoiceORMModel
 target_metadata = BaseOrmModel.metadata
 
 # other values from the config, defined by the needs of env.py,
