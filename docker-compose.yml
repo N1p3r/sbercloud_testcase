@@ -6,18 +6,20 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: 12345
+      POSTGRES_PASSWORD: admin123
       POSTGRES_USER: postgres
       POSTGRES_DB: app
     ports:
       - 5432:5432
 
   api:
-    build: .
+    build: app_a/
     restart: always
     ports:
-      - 80:80
+      - 8000:8000
     depends_on:
       - db
+    environment:
+      DB_CONN_STRING: "postgresql://postgres:admin123@localhost:5432/app"
     volumes:
       - .:/usr/src/app/

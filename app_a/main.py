@@ -1,20 +1,21 @@
 from contextlib import contextmanager
+from os import getenv
 from typing import List
-from pydantic import parse_obj_as
-import uvicorn
 
+import uvicorn
 from fastapi import FastAPI, HTTPException
+from pydantic import parse_obj_as
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.models.validators import Invoice, IdRequestModel, DbInvoiceModel, Payment, \
+from models.db import InvoiceORMModel, PaymentORMModel
+from models.validators import Invoice, IdRequestModel, DbInvoiceModel, Payment, \
     DbPaymentModel
-from app.models.db import InvoiceORMModel, PaymentORMModel
 
 app = FastAPI()
-
-engine = create_engine("postgresql://postgres:12345@localhost:5432/app", echo=False)
+engine = create_engine(getenv("DB_CONN_STRING", "postgresql://postgres:admin123@localhost:5432/app"), echo=False)
 session_factory = sessionmaker(bind=engine)
+print(engine.url)
 
 
 @contextmanager
